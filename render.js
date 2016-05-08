@@ -23,8 +23,17 @@
     loader.load( "Tree.js", function(geometry) {
         var material = new THREE.MeshLambertMaterial({color: 0x555653});
         mesh = new THREE.Mesh(geometry, material);
+        //mesh.rotateX(Math.PI / 2);
         scene.add(mesh);
-        mesh.position.set(0, -5, 0);
+        mesh.position.set(-2, -5, 0);
+    });
+
+    loader.load( "Tree2.json", function(geometry, materials) {
+        var material = new THREE.MeshFaceMaterial(materials);
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.rotateX(Math.PI / 2);
+        scene.add(mesh);
+        mesh.position.set(5, -5, 0);
     });
 
     loader.load("landscape.json", function(geometry, materials) {
@@ -32,6 +41,7 @@
         model = new THREE.Mesh(geometry, material);
         model.scale.set(5, 5, 5);
         model.rotateX(Math.PI / 2);
+        model.position.set(0, -5, 0);
         scene.add(model);
     });
 
@@ -49,7 +59,7 @@
         requestAnimationFrame(render);
         renderer.render(scene, camera);
     };
-    
+
     render();
     controls.update();
 })();
